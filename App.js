@@ -2,8 +2,9 @@ import * as React from 'react'
 import {Text,View} from 'react-native'
 import Fb from './screens.js/fb'
 import In from './screens.js/in'
-import {createBottomNavigator,createSwitchNavigator,createAppContainer} from 'react-navigation';
-export default class Fb extends React.Component{
+import {createSwitchNavigator,createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs'
+export default class App extends React.Component{
 
 
     
@@ -16,6 +17,8 @@ export default class Fb extends React.Component{
       
 <AppContainer/>
       
+
+
             </View>
         )
 
@@ -25,14 +28,19 @@ export default class Fb extends React.Component{
     }
 }
 
-createBottomNavigator=()=>{
-    var AppNavigator=createSwitchNavigator({
-Fb:Fb,
-In:In
-        
-      
-      })
-    
-    }
-var AppContainer=createAppContainer(AppNavigator)
+const TabNavigator=createBottomTabNavigator({
+    Fb: {screen:Fb},
+    In: {screen:In}
+  })
 
+  
+  const AppContainer=createAppContainer(TabNavigator)
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
